@@ -59,15 +59,15 @@ End Sub
 
 Sub btnTorch_Click
 	If Capturing Then
-	#If B4i
-		If scanner.TorchMode = scanner.TORCH_OFF Then
-			scanner.TorchMode = scanner.TORCH_ON
-			btnTorch.Text = "Flash Off"
-		Else
-			scanner.TorchMode = scanner.TORCH_OFF
-			btnTorch.Text = "Flash On"
-		End If
-    	#Else If B4A
+    #If B4i
+        If scanner.TorchMode = scanner.TORCH_OFF Then
+            scanner.TorchMode = scanner.TORCH_ON
+			btnTorch.Text = "Torch Off"
+        Else
+            scanner.TorchMode = scanner.TORCH_OFF
+			btnTorch.Text = "Torch On"
+        End If
+    #Else If B4A
 		If camEx.GetFlashMode <> "torch" Then
 			camEx.SetFlashMode("torch")
 			camEx.CommitParameters
@@ -77,7 +77,7 @@ Sub btnTorch_Click
 			camEx.CommitParameters
 			btnTorch.Text = "Torch On"
 		End If
-    	#End If
+    #End If
 	End If
 End Sub
 
