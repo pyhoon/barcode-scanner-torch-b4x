@@ -28,7 +28,7 @@ Sub Class_Globals
 	Private toast As BCToast
 	Private lblResult As B4XView
 	Private Capturing As Boolean
-	Private btnFlash As Button
+	Private btnTorch As Button
 End Sub
 
 Public Sub Initialize
@@ -44,7 +44,7 @@ Private Sub B4XPage_Created (Root1 As B4XView)
 	#if B4A
 	CreateDetector (Array("CODE_128", "CODE_93", "QR_CODE", "EAN_13"))
 	#Else if B4i
-	scanner.Initialize2("scanner", pnlPreview, Array(scanner.TYPE_93, scanner.TYPE_128, scanner.TYPE_QR))
+	scanner.Initialize2("scanner", pnlPreview, Array(scanner.TYPE_93, scanner.TYPE_128, scanner.TYPE_QR, scanner.TYPE_EAN13))
 	Wait For Scanner_Ready (Success As Boolean)
 	If Success = False Then
 		btnStartStop.Enabled = False
@@ -58,27 +58,27 @@ Private Sub B4XPage_Disappear
 End Sub
 
 Sub btnTorch_Click
-    If Capturing Then
+	If Capturing Then
     #If B4i
         If scanner.TorchMode = scanner.TORCH_OFF Then
             scanner.TorchMode = scanner.TORCH_ON
-            btnFlash.Text = "Flash Off"
+			btnTorch.Text = "Flash Off"
         Else
             scanner.TorchMode = scanner.TORCH_OFF
-            btnFlash.Text = "Flash On"
+			btnTorch.Text = "Flash On"
         End If
     #Else If B4A
-        If camEx.GetFlashMode <> "torch" Then
-            camEx.SetFlashMode("torch")
-            camEx.CommitParameters
-            btnTorch.Text = "Torch Off"
-        Else
-            camEx.SetFlashMode("off")
-            camEx.CommitParameters
-            btnTorch.Text = "Torch On"
-        End If 
+		If camEx.GetFlashMode <> "torch" Then
+			camEx.SetFlashMode("torch")
+			camEx.CommitParameters
+			btnTorch.Text = "Torch Off"
+		Else
+			camEx.SetFlashMode("off")
+			camEx.CommitParameters
+			btnTorch.Text = "Torch On"
+		End If
     #End If
-    End If
+	End If
 End Sub
 
 Sub btnStartStop_Click
