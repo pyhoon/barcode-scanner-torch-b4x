@@ -1,3 +1,6 @@
-* linguist-vendored
-*.b4a linguist-vendored=false
-*.b4i linguist-vendored=false
+*.b4a linguist-language=b4x
+*.b4i linguist-language=b4x
+*.bas linguist-language=b4x
+*.b4a linguist-detectable=true
+*.b4i linguist-detectable=true
+*.bas linguist-detectable=true
